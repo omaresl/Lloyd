@@ -49,22 +49,33 @@ void app_Menu_init(void)
  *************************************/
 void app_Menu_Task(void)
 {
-	/* Fill digits */
-	app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
+	static unsigned char lub_DisplayFlag;
 
-	/* Set Cursor */
-	LCD.setCursor(0u,1u);
-	/* Print text for selected item */
-	LCD.println(raub_ItemText[rub_ItemSelected]);
-	/* Set Cursor */
-	LCD.setCursor(13u,1u);
-	/* Print digits */
-	LCD.print(rub_DigitHund);
-	LCD.print(rub_DigitDec);
-	LCD.print(rub_DigitUni);
-	/* Cursor Blink in digit selected */
-	LCD.setCursor((15u - rub_DigitSelected),1u);
-	LCD.blink();
+	if(true == lub_DisplayFlag)
+	{
+		/* Fill digits */
+		app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
+
+		/* Set Cursor */
+		LCD.setCursor(0u,1u);
+		/* Print text for selected item */
+		LCD.println(raub_ItemText[rub_ItemSelected]);
+		/* Set Cursor */
+		LCD.setCursor(13u,1u);
+		/* Print digits */
+		LCD.print(rub_DigitHund);
+		LCD.print(rub_DigitDec);
+		LCD.print(rub_DigitUni);
+		/* Cursor Blink in digit selected */
+		LCD.setCursor((15u - rub_DigitSelected),1u);
+		LCD.blink();
+		/* Clear Flag */
+		lub_DisplayFlag = false;
+	}
+	else
+	{
+		/* Do Not Display */
+	}
 
 	do
 	{
@@ -121,19 +132,77 @@ void app_Menu_Task(void)
 			}break;
 			case BUTTON_DOWN:
 			{
-
+				if(0u == rub_DigitSelected)
+				{
+					if(rub_DigitUni > 0u)
+					{
+						rub_DigitUni--;
+					}
+					else
+					{
+						rub_DigitUni = 9u;
+					}
+				}
+				else if(1u == rub_DigitSelected)
+				{
+					if(rub_DigitDec > 0u)
+					{
+						rub_DigitDec--;
+					}
+					else
+					{
+						rub_DigitDec = 9u;
+					}
+				}
+				else if(2u == rub_DigitSelected)
+				{
+					if(rub_DigitHund > 0u)
+					{
+						rub_DigitHund--;
+					}
+					else
+					{
+						rub_DigitHund = 9u;
+					}
+				}
+				else
+				{
+					/* Invalid Selection */
+					rub_DigitSelected = 0u; //Select units digit
+				}
 			}break;
 			case BUTTON_RIGHT:
 			{
-
+				if(rub_DigitSelected > 0u)
+				{
+					rub_DigitSelected--;
+				}
+				else
+				{
+					rub_DigitSelected = 2u;
+				}
 			}break;
 			case BUTTON_LEFT:
 			{
-
+				if(rub_DigitSelected < 2u)
+				{
+					rub_ItemSelected++;
+				}
+				else
+				{
+					rub_ItemSelected = 0u;
+				}
 			}break;
 			case BUTTON_SELECT:
 			{
-
+				if(rub_ItemSelected >= (APP_MENU_N_ITEMS - 1u))
+				{
+					rub_ItemSelected = 0u
+				}
+				else
+				{
+					rub_ItemSelected++;
+				}
 			}break;
 			default:
 			{
