@@ -16,6 +16,9 @@ unsigned char rub_ItemSelected = 0u;
 unsigned char rub_DigitSelected;
 unsigned char rub_DigitHund,rub_DigitDec,rub_DigitUni;
 
+static T_BUTTONS re_LastButtonPressed;
+static T_BUTTONS re_ButtonPressed;
+
 /* Private Prototypes */
 static void app_Menu_ToDigits(unsigned long lul_Value);
 
@@ -31,6 +34,11 @@ void app_Menu_init(void)
 {
 	/* Item Index clear*/
 	rub_ItemSelected = 0u;
+	/* Clear button pressed */
+	re_LastButtonPressed = BUTTON_NONE;
+	re_ButtonPressed = BUTTON_NONE;
+	/* Digit Selection Clear */
+	rub_DigitSelected = 0u;
 }
 
 /*************************************
@@ -55,8 +63,88 @@ void app_Menu_Task(void)
 	LCD.print(rub_DigitDec);
 	LCD.print(rub_DigitUni);
 	/* Cursor Blink in digit selected */
-	LCD.setCursor(15u,1u);
+	LCD.setCursor((15u - rub_DigitSelected),1u);
 	LCD.blink();
+
+	/* Check if one button was pressed */
+	if(BUTTON_NONE == re_LastButtonPressed)
+	{
+		/* Update Last Button Pressed */
+		re_LastButtonPressed = re_ButtonPressed;
+
+		/* Perform the corresponding action */
+		switch(re_ButtonPressed)
+		{
+		case BUTTON_UP:
+		{
+			if(0u == rub_DigitSelected)
+			{
+				if(rub_DigitUni < 9u)
+				{
+					rub_DigitUni++;
+				}
+				else
+				{
+					rub_DigitUni = 0u;
+				}
+			}
+			else if(1u == rub_DigitSelected)
+			{
+				if(rub_DigitDec < 9u)
+				{
+					rub_DigitDec++;
+				}
+				else
+				{
+					rub_DigitDec = 0u;
+				}
+			}
+			else if(2u == rub_DigitSelected)
+			{
+				if(rub_DigitHund < 9u)
+				{
+					rub_DigitHund++;
+				}
+				else
+				{
+					rub_DigitHund = 0u;
+				}
+			}
+			else
+			{
+				/* Invalid Selection */
+				rub_DigitSelected = 0u; //Select units digit
+			}
+
+		}break;
+		case BUTTON_DOWN:
+		{
+
+		}break;
+		case BUTTON_RIGHT:
+		{
+
+		}break;
+		case BUTTON_LEFT:
+		{
+
+		}break;
+		case BUTTON_SELECT:
+		{
+
+		}break;
+		default:
+		{
+			/* Do nothing - Invalid Button detection */
+		}break;
+		}
+	}
+	else
+	{
+		/* Button already pressed, wait for release */
+	}
+
+
 }
 
 /*************************************
