@@ -1,0 +1,19 @@
+Using a stepper motor attached to a needle valve to control the cooling water, I need the Arduino PID control code to regulate the temperature.
+
+Hardware is Uno or Mega, one DS18B20 temperature sensor, 16x2 LCD Keypad shield, MicroStepper, 2 limit switches, 24VDC 2 Amp minimum power supply,
+
+Keypad Shield: https://www.dfrobot.com/wiki/index.php/LCD_KeyPad_Shield_For_Arduino_SKU:_DFR0009
+
+MicroStepper: https://www.dfrobot.com/wiki/index.php/TB6600_Stepper_Motor_Driver_SKU:_DRI0043
+
+The completed unit needs to regulate the cooling water that goes to a condenser.
+
+Settings for the desired temperature are made with the keypad buttons.
+
+The LCD should display the desired temperature and the actual temperature.
+
+See my short YouTube video of the project so far.
+
+https://youtu.be/W4wYX8mM3Us
+
+The winning Freelancer will earn $125 USD for completing this project.

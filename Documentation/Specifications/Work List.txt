@@ -1,0 +1,22 @@
+Something that seems to confuse people about this 
+project is how to control the motor with the PID code. 
+They seem to think the valve must be fully On or fully Off. 
+But that is not correct. When the condenser temperature 
+setpoint is exceeded, the valve should open slightly. 
+If still too hot, it should open a little more, and so on...
+
+The process equipment (alcohol distiller) is best used when 
+small and gradual changes are made. Even a small distiller can 
+take hours for a small batch to complete. 
+The limit switches are to protect the valve from closing too 
+much or opening too much, as that can damage the valve.
+
+Normally the condenser is used to cool the product that flows 
+through it so cold water is added to the condenser using the valve.
+But sometimes the unit is used, instead, to add heat to the system 
+(controlling the temperature of a fermenter). I'd think that the Menu 
+would need a "select" setting for Add Heat or Add Cold. 
+
+The small needle valve used has approximately 10 full revolutions of turn 
+from fully Off to fully On. But most of the water flow seems to happen 
+during the first 4 or 5 revolutions from cracking the valve Open. 
