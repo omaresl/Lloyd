@@ -57,7 +57,7 @@ void app_Menu_Task(void)
 	/* Print text for selected item */
 	LCD.println(raub_ItemText[rub_ItemSelected]);
 	/* Set Cursor */
-	LCD.setCursor(14u,1u);
+	LCD.setCursor(13u,1u);
 	/* Print digits */
 	LCD.print(rub_DigitHund);
 	LCD.print(rub_DigitDec);
@@ -66,85 +66,87 @@ void app_Menu_Task(void)
 	LCD.setCursor((15u - rub_DigitSelected),1u);
 	LCD.blink();
 
-	/* Check if one button was pressed */
-	if(BUTTON_NONE == re_LastButtonPressed)
+	do
 	{
-		/* Update Last Button Pressed */
-		re_LastButtonPressed = re_ButtonPressed;
+		/* Check if one button was pressed */
+		if(BUTTON_NONE == re_LastButtonPressed)
+		{
+			/* Update Last Button Pressed */
+			re_LastButtonPressed = re_ButtonPressed;
 
-		/* Perform the corresponding action */
-		switch(re_ButtonPressed)
-		{
-		case BUTTON_UP:
-		{
-			if(0u == rub_DigitSelected)
+			/* Perform the corresponding action */
+			switch(re_ButtonPressed)
 			{
-				if(rub_DigitUni < 9u)
+			case BUTTON_UP:
+			{
+				if(0u == rub_DigitSelected)
 				{
-					rub_DigitUni++;
+					if(rub_DigitUni < 9u)
+					{
+						rub_DigitUni++;
+					}
+					else
+					{
+						rub_DigitUni = 0u;
+					}
+				}
+				else if(1u == rub_DigitSelected)
+				{
+					if(rub_DigitDec < 9u)
+					{
+						rub_DigitDec++;
+					}
+					else
+					{
+						rub_DigitDec = 0u;
+					}
+				}
+				else if(2u == rub_DigitSelected)
+				{
+					if(rub_DigitHund < 9u)
+					{
+						rub_DigitHund++;
+					}
+					else
+					{
+						rub_DigitHund = 0u;
+					}
 				}
 				else
 				{
-					rub_DigitUni = 0u;
+					/* Invalid Selection */
+					rub_DigitSelected = 0u; //Select units digit
 				}
-			}
-			else if(1u == rub_DigitSelected)
+
+			}break;
+			case BUTTON_DOWN:
 			{
-				if(rub_DigitDec < 9u)
-				{
-					rub_DigitDec++;
-				}
-				else
-				{
-					rub_DigitDec = 0u;
-				}
-			}
-			else if(2u == rub_DigitSelected)
+
+			}break;
+			case BUTTON_RIGHT:
 			{
-				if(rub_DigitHund < 9u)
-				{
-					rub_DigitHund++;
-				}
-				else
-				{
-					rub_DigitHund = 0u;
-				}
-			}
-			else
+
+			}break;
+			case BUTTON_LEFT:
 			{
-				/* Invalid Selection */
-				rub_DigitSelected = 0u; //Select units digit
+
+			}break;
+			case BUTTON_SELECT:
+			{
+
+			}break;
+			default:
+			{
+				/* Do nothing - Invalid Button detection */
+			}break;
 			}
-
-		}break;
-		case BUTTON_DOWN:
-		{
-
-		}break;
-		case BUTTON_RIGHT:
-		{
-
-		}break;
-		case BUTTON_LEFT:
-		{
-
-		}break;
-		case BUTTON_SELECT:
-		{
-
-		}break;
-		default:
-		{
-			/* Do nothing - Invalid Button detection */
-		}break;
 		}
-	}
-	else
-	{
-		/* Button already pressed, wait for release */
-	}
+		else
+		{
+			/* Button already pressed, wait for release */
+		}
 
-
+	}while(0);
 }
 
 /*************************************
