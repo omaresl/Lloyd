@@ -14,7 +14,9 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  ..\application/app_LCD.h \
  C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src/LiquidCrystal.h \
  C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h \
- ..\test/Test_Cases.h ..\test/../application/app_LCD.h ..\PID_Arduino.ino
+ ..\application/app_Buttons.h ..\test/Test_Cases.h \
+ ..\test/../application/app_LCD.h ..\test/../application/app_Buttons.h \
+ ..\PID_Arduino.ino
 
 C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
@@ -46,8 +48,12 @@ C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src/LiquidCrystal
 
 C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h:
 
+..\application/app_Buttons.h:
+
 ..\test/Test_Cases.h:
 
 ..\test/../application/app_LCD.h:
+
+..\test/../application/app_Buttons.h:
 
 ..\PID_Arduino.ino:

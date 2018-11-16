@@ -11,7 +11,7 @@
 #define APP_LCD_N_ROWS		(2u)
 #define APP_LCD_N_COLUMNS	(16u)
 
-/* Private Variables */
+/* Variables */
 LiquidCrystal LCD(APP_LCD_RS_PIN,
 		APP_LCD_EN_PIN,
 		APP_LCD_D4_PIN,
