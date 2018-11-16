@@ -22,6 +22,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LCD_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1802731047" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -30,6 +33,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LCD_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1999284369" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -38,6 +44,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LCD_I2C}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.947311806" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

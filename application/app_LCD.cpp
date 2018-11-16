@@ -12,7 +12,7 @@
 #define APP_LCD_N_COLUMNS	(16u)
 
 /* Variables */
-LiquidCrystal LCD(APP_LCD_RS_PIN,
+LiquidCrystal_I2C LCD(0x27,16,2);/*(APP_LCD_RS_PIN,
 		APP_LCD_EN_PIN,
 		APP_LCD_D4_PIN,
 		APP_LCD_D5_PIN,
@@ -30,7 +30,7 @@ LiquidCrystal LCD(APP_LCD_RS_PIN,
 void app_LCD_Init(void)
 {
 	/* LCD Initialization */
-	LCD.begin(APP_LCD_N_COLUMNS,APP_LCD_N_ROWS);
+	LCD.begin();//APP_LCD_N_COLUMNS,APP_LCD_N_ROWS);
 	/* Set cursor to home */
 	LCD.setCursor(0u,0u);
 	/* Print first message */
