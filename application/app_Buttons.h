@@ -19,7 +19,8 @@ typedef enum
 	BUTTON_UP,
 	BUTTON_DOWN,
 	BUTTON_LEFT,
-	BUTTON_SELECT
+	BUTTON_SELECT,
+	BUTTON_INVALID
 }T_BUTTONS;
 
 /* External Functions */
