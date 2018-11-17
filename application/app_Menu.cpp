@@ -92,6 +92,7 @@ void app_Menu_Task(void)
 
 		/* Update Buttons */
 		re_ButtonPressed = app_Buttons_GetButtonPressed();
+#ifdef PRINT_BUTTONS
 		if((re_LastButtonPressed != re_ButtonPressed))
 		{
 			LCD.setCursor(0,0);
@@ -101,6 +102,7 @@ void app_Menu_Task(void)
 		{
 			/* Do Nothing */
 		}
+#endif
 
 		/* Check if one button was pressed */
 		if((BUTTON_NONE == re_LastButtonPressed) &&
