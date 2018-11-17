@@ -5,6 +5,9 @@
  *      Author: Omar Sevilla
  */
 
+/* Interfaces */
+#include "app_Display.h"
+
 
 
 

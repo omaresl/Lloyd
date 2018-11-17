@@ -10,6 +10,7 @@
 
 /* Interfaces */
 #include <Arduino.h>
+#include "app_LCD.h"
 
 /* Typedefs */
 typedef enum
@@ -23,8 +24,12 @@ typedef enum
 	BUTTON_INVALID
 }T_BUTTONS;
 
+/* Macros */
+#define APP_BUTTONS_DEBOUNCE	(10u)
+
 /* External Functions */
 extern void app_Buttons_init(void);
 extern T_BUTTONS app_Buttons_GetButtonPressed(void);
+extern void app_Buttons_PrintButton(T_BUTTONS le_ButtonPressed);
 
 #endif /* APPLICATION_APP_BUTTONS_H_ */

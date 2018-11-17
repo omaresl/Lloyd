@@ -9,7 +9,7 @@
 #define APPLICATION_APP_LCD_H_
 
 #include <Arduino.h>
-#define OmarBoard
+//#define OmarBoard
 #ifdef OmarBoard
 #include <LiquidCrystal_I2C.h>
 #else

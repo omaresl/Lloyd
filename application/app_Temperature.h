@@ -11,8 +11,16 @@
 /* Interfaces */
 #include <Arduino.h>
 
+/* Typedefs */
+
+/* Macros */
+#define 	ADD_COLD	false
+#define 	ADD_HEAT	true
+
 /* Extern variables */
 extern unsigned long rul_DesiredTemperature;
+extern unsigned long re_TempAddMode;
+extern unsigned long rub_TempSamples;
 
 
 #endif /* APPLICATION_APP_TEMPERATURE_H_ */
