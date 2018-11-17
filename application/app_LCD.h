@@ -9,7 +9,12 @@
 #define APPLICATION_APP_LCD_H_
 
 #include <Arduino.h>
+#define OmarBoard
+#ifdef OmarBoard
+#include <LiquidCrystal_I2C.h>
+#else
 #include <LiquidCrystal.h>
+#endif
 
 /* Public Macros */
 //Pin Definitions
@@ -21,7 +26,11 @@
 #define APP_LCD_D7_PIN	(7u) //Pin Arduino D7
 
 /* Public Variables */
+#ifdef OmarBoard
+extern LiquidCrystal_I2C LCD;
+#else
 extern LiquidCrystal LCD;
+#endif
 
 /* External Prototypes */
 extern void app_LCD_Init(void);

@@ -1,54 +1,64 @@
 sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WString.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Stream.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Printable.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/pins_arduino.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/../standard/pins_arduino.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WString.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Stream.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Printable.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/pins_arduino.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/../standard/pins_arduino.h \
  ..\application/app_LCD.h \
- C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src/LiquidCrystal.h \
- C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h \
- ..\application/app_Buttons.h ..\test/Test_Cases.h \
+ D:\Eclipse\arduinoPlugin\libraries\LCD_I2C\1.0.0/LiquidCrystal_I2C.h \
+ D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h \
+ ..\application/app_Buttons.h ..\application/app_Menu.h \
+ ..\application/app_LCD.h ..\application/app_Buttons.h \
+ ..\application/app_Temperature.h ..\test/Test_Cases.h \
  ..\test/../application/app_LCD.h ..\test/../application/app_Buttons.h \
  ..\PID_Arduino.ino
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WString.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WString.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Stream.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Stream.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Printable.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Printable.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/pins_arduino.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/pins_arduino.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/../standard/pins_arduino.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\eightanaloginputs/../standard/pins_arduino.h:
 
 ..\application/app_LCD.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\libraries\LiquidCrystal\1.0.7\src/LiquidCrystal.h:
+D:\Eclipse\arduinoPlugin\libraries\LCD_I2C\1.0.0/LiquidCrystal_I2C.h:
 
-C:\Eclipse\eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h:
+D:\Eclipse\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Print.h:
 
 ..\application/app_Buttons.h:
+
+..\application/app_Menu.h:
+
+..\application/app_LCD.h:
+
+..\application/app_Buttons.h:
+
+..\application/app_Temperature.h:
 
 ..\test/Test_Cases.h:
 
