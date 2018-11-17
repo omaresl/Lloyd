@@ -18,6 +18,8 @@ void setup()
 	app_Temperature_Init();
 	/* Init LCD Module */
 	app_LCD_Init();
+	/* Display init */
+	app_Display_Init();
 	/* Init Buttons Module */
 	app_Buttons_init();
 	/* Menu Init */
@@ -28,7 +30,8 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
-	app_Menu_Task();
+	app_Temperature_Task();
+	app_Display_Task();
 #ifdef TEST
 //	Test_Case_LCD();
 //	Test_Case_Buttons();

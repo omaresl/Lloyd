@@ -246,6 +246,7 @@ void app_Menu_Task(void)
 			}
 			else
 			{
+				re_DisplayMode = DISPLAY_NORMAL;
 				rub_ItemSelected = 0u;
 			}
 		}break;

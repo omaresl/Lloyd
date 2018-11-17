@@ -17,13 +17,21 @@
 #define 	ADD_COLD	false
 #define 	ADD_HEAT	true
 
+#define APP_TEMP_MAX_SAMPLES	(100u)
+#define APP_TEMP_MIN_SAMPLES	(1u)
+
 /* Extern variables */
 extern unsigned long rul_DesiredTemperature;
+extern unsigned long rul_DecDesiredTemperature;
 extern unsigned long re_TempAddMode;
 extern unsigned long rub_TempSamples;
+extern unsigned int ruw_AverageTemp;
+extern unsigned char rub_DecAverageTemp;
 
 /* Public Funcitons */
 extern void app_Temperature_Init(void);
+extern void app_Temperature_Task(void);
+extern unsigned int app_Temperature_GetTemp(void);
 
 
 #endif /* APPLICATION_APP_TEMPERATURE_H_ */

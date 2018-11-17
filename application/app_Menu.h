@@ -14,6 +14,7 @@
 #include "app_Buttons.h"
 #include "app_Temperature.h"
 #include "app_PID.h"
+#include "app_Display.h"
 
 /* Public Macros */
 #define APP_MENU_N_ITEMS	(6u)
@@ -41,7 +42,7 @@
 		{\
 	99u,\
 	ADD_HEAT,\
-	100u,\
+	APP_TEMP_MAX_SAMPLES,\
 	10u,\
 	10u,\
 	10u,\
@@ -51,7 +52,7 @@
 		{\
 	0u,\
 	ADD_COLD,\
-	10u,\
+	APP_TEMP_MIN_SAMPLES,\
 	0u,\
 	0u,\
 	0u,\
