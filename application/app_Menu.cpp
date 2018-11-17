@@ -195,9 +195,9 @@ void app_Menu_Task(void)
 			}break;
 			case BUTTON_SELECT:
 			{
-				if(rub_ItemSelected >= (APP_MENU_N_ITEMS - 1u))
+				if(rub_ItemSelected > (APP_MENU_N_ITEMS - 1u))
 				{
-					rub_ItemSelected = 0u
+					rub_ItemSelected = 0u;
 				}
 				else
 				{

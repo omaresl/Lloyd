@@ -35,7 +35,7 @@ void app_LCD_Init(void)
 {
 	/* LCD Initialization */
 #ifdef OmarBoard
-	LCD.begin();
+	LCD.begin(APP_LCD_N_COLUMNS,APP_LCD_N_ROWS);
 #else
 	LCD.begin(APP_LCD_N_COLUMNS,APP_LCD_N_ROWS);
 #endif
