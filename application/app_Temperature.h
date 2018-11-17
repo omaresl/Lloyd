@@ -22,5 +22,8 @@ extern unsigned long rul_DesiredTemperature;
 extern unsigned long re_TempAddMode;
 extern unsigned long rub_TempSamples;
 
+/* Public Funcitons */
+extern void app_Temperature_Init(void);
+
 
 #endif /* APPLICATION_APP_TEMPERATURE_H_ */
