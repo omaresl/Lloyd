@@ -15,6 +15,7 @@
 #else
 #include <LiquidCrystal.h>
 #endif
+#include "app_LimitSwitch.h"
 
 /* Public Macros */
 //Pin Definitions

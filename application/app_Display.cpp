@@ -44,12 +44,19 @@ void app_Display_Task(void)
 		LCD.print('.');
 		LCD.print(rub_DecAverageTemp);
 
-		/* Display Fixed Temperature */
-		LCD.setCursor(0,1);
-		LCD.print("Fixed Temp: ");
-		LCD.print(rul_DesiredTemperature);
-		LCD.print('.');
-		LCD.print(rul_DecDesiredTemperature);
+		if(LIMITSTATE_INRANGE == re_LimitState)
+		{
+			/* Display Fixed Temperature */
+			LCD.setCursor(0,1);
+			LCD.print("Fixed Temp: ");
+			LCD.print(rul_DesiredTemperature);
+			LCD.print('.');
+			LCD.print(rul_DecDesiredTemperature);
+		}
+		else
+		{
+			/* Keep the text left by LimitSwithc */
+		}
 	}
 	else
 	{
