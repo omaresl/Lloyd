@@ -14,7 +14,7 @@ unsigned long *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
 const char raub_ItemText[APP_MENU_N_ITEMS][17u] = APP_MENU_ITEMSTEXT;
 const unsigned long raul_MaxLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MAXLIMITS;
 const unsigned long raul_MinLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MINLIMITS;
-unsigned char rub_ItemSelected = 0u;
+unsigned char rub_ItemSelected;
 unsigned char rub_DigitSelected;
 unsigned char rub_DigitHund,rub_DigitDec,rub_DigitUni;
 
@@ -62,9 +62,6 @@ void app_Menu_Task(void)
 {
 	if(true == rub_DisplayFlag)
 	{
-		/* Fill digits */
-		app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
-
 		/* Set Cursor */
 		LCD.setCursor(0u,1u);
 
@@ -83,8 +80,10 @@ void app_Menu_Task(void)
 		}
 		else
 		{
+			/* Fill digits */
+			app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
 			/* Print text for selected item */
-			LCD.println(raub_ItemText[rub_ItemSelected]);
+			LCD.print(raub_ItemText[rub_ItemSelected]);
 			/* Set Cursor */
 			LCD.setCursor(13u,1u);
 
@@ -103,7 +102,7 @@ void app_Menu_Task(void)
 	}
 	else
 	{
-		/* Do Not Display */
+		/* Do Not Update Display */
 	}
 
 	//	/* Check if a period of 10 ms has been passed */
@@ -135,111 +134,144 @@ void app_Menu_Task(void)
 		{
 		case BUTTON_UP:
 		{
-			if(0u == rub_DigitSelected)
+			if(1u == rub_ItemSelected)
 			{
-				if(rub_DigitUni < 9u)
-				{
-					rub_DigitUni++;
-				}
-				else
-				{
-					rub_DigitUni = 0u;
-				}
-			}
-			else if(1u == rub_DigitSelected)
-			{
-				if(rub_DigitDec < 9u)
-				{
-					rub_DigitDec++;
-				}
-				else
-				{
-					rub_DigitDec = 0u;
-				}
-			}
-			else if(2u == rub_DigitSelected)
-			{
-				if(rub_DigitHund < 9u)
-				{
-					rub_DigitHund++;
-				}
-				else
-				{
-					rub_DigitHund = 0u;
-				}
+				*raul_Items[rub_ItemSelected] = ADD_HEAT;
 			}
 			else
 			{
-				/* Invalid Selection */
-				rub_DigitSelected = 0u; //Select units digit
+				if(0u == rub_DigitSelected)
+				{
+					if(rub_DigitUni < 9u)
+					{
+						rub_DigitUni++;
+					}
+					else
+					{
+						rub_DigitUni = 0u;
+					}
+				}
+				else if(1u == rub_DigitSelected)
+				{
+					if(rub_DigitDec < 9u)
+					{
+						rub_DigitDec++;
+					}
+					else
+					{
+						rub_DigitDec = 0u;
+					}
+				}
+				else if(2u == rub_DigitSelected)
+				{
+					if(rub_DigitHund < 9u)
+					{
+						rub_DigitHund++;
+					}
+					else
+					{
+						rub_DigitHund = 0u;
+					}
+				}
+				else
+				{
+					/* Invalid Selection */
+					rub_DigitSelected = 0u; //Select units digit
+				}
+				/* Save New Data Config */
+				app_Menu_ToData();
 			}
-
 		}break;
 		case BUTTON_DOWN:
 		{
-			if(0u == rub_DigitSelected)
+			if(1u == rub_ItemSelected)
 			{
-				if(rub_DigitUni > 0u)
+				*raul_Items[rub_ItemSelected] = ADD_COLD;
+			}
+			else{
+				if(0u == rub_DigitSelected)
 				{
-					rub_DigitUni--;
+					if(rub_DigitUni > 0u)
+					{
+						rub_DigitUni--;
+					}
+					else
+					{
+						rub_DigitUni = 9u;
+					}
+				}
+				else if(1u == rub_DigitSelected)
+				{
+					if(rub_DigitDec > 0u)
+					{
+						rub_DigitDec--;
+					}
+					else
+					{
+						rub_DigitDec = 9u;
+					}
+				}
+				else if(2u == rub_DigitSelected)
+				{
+					if(rub_DigitHund > 0u)
+					{
+						rub_DigitHund--;
+					}
+					else
+					{
+						rub_DigitHund = 9u;
+					}
 				}
 				else
 				{
-					rub_DigitUni = 9u;
+					/* Invalid Selection */
+					rub_DigitSelected = 0u; //Select units digit
 				}
-			}
-			else if(1u == rub_DigitSelected)
-			{
-				if(rub_DigitDec > 0u)
-				{
-					rub_DigitDec--;
-				}
-				else
-				{
-					rub_DigitDec = 9u;
-				}
-			}
-			else if(2u == rub_DigitSelected)
-			{
-				if(rub_DigitHund > 0u)
-				{
-					rub_DigitHund--;
-				}
-				else
-				{
-					rub_DigitHund = 9u;
-				}
-			}
-			else
-			{
-				/* Invalid Selection */
-				rub_DigitSelected = 0u; //Select units digit
+				/* Save New Data Config */
+				app_Menu_ToData();
 			}
 		}break;
 		case BUTTON_RIGHT:
 		{
-			if(rub_DigitSelected > 0u)
+			if(1u == rub_ItemSelected)
 			{
-				rub_DigitSelected--;
+				/* Do nothing */
 			}
 			else
 			{
-				rub_DigitSelected = 2u;
+				if(rub_DigitSelected > 0u)
+				{
+					rub_DigitSelected--;
+				}
+				else
+				{
+					rub_DigitSelected = 2u;
+				}
 			}
 		}break;
 		case BUTTON_LEFT:
 		{
-			if(rub_DigitSelected < 2u)
+			if(1u == rub_ItemSelected)
 			{
-				rub_DigitSelected++;
+				/* Do nothing */
 			}
 			else
 			{
-				rub_DigitSelected = 0u;
+				if(rub_DigitSelected < 2u)
+				{
+					rub_DigitSelected++;
+				}
+				else
+				{
+					rub_DigitSelected = 0u;
+				}
 			}
 		}break;
 		case BUTTON_SELECT:
 		{
+			/* Save New Data Config */
+			app_Menu_ToData();
+
 			if(rub_ItemSelected < (APP_MENU_N_ITEMS - 1u))
 			{
 				rub_ItemSelected++;
@@ -256,11 +288,14 @@ void app_Menu_Task(void)
 		}break;
 		}
 
-		/* Save New Data Config */
-		app_Menu_ToData();
-
 		/* Refresh Display */
 		rub_DisplayFlag = true;
+
+		while(BUTTON_NONE != re_ButtonPressed)
+		{
+			/* Wait Release */
+			re_ButtonPressed = app_Buttons_GetButtonPressed();
+		}
 
 	}
 	else
@@ -296,7 +331,14 @@ static void app_Menu_ToDigits(unsigned long lul_Value)
  *************************************/
 static void app_Menu_ToData(void)
 {
-	*raul_Items[rub_ItemSelected] = 	(rub_DigitHund*100u) + (rub_DigitDec*10u) + (rub_DigitUni);
+	if(1u == rub_ItemSelected)
+	{
+		/* Do Nothing */
+	}
+	else
+	{
+		*raul_Items[rub_ItemSelected] = 	(rub_DigitHund*100u) + (rub_DigitDec*10u) + (rub_DigitUni);
+	}
 	app_Menu_CheckLimits();
 }
 

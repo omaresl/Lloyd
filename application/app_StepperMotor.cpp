@@ -54,7 +54,7 @@ void app_StepperMotor_OneStep(unsigned char lub_dir)
 {
 	unsigned int lub_i;
 
-	for(lub_i = 0; lub_i < 100u; lub_i++)
+	for(lub_i = 0; lub_i < 40u; lub_i++)
 	{
 		digitalWrite(APP_STEPPERMOTOR_DIR_PIN,lub_dir);
 		digitalWrite(APP_STEPPERMOTOR_EN_PIN,HIGH);

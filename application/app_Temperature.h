@@ -25,7 +25,7 @@ extern unsigned long rul_DesiredTemperature;
 extern unsigned long rul_DecDesiredTemperature;
 extern unsigned long re_TempAddMode;
 extern unsigned long rub_TempSamples;
-extern unsigned int ruw_AverageTemp;
+extern float ruw_AverageTemp;
 extern unsigned char rub_DecAverageTemp;
 
 /* Public Funcitons */

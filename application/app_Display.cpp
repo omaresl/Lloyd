@@ -43,15 +43,15 @@ void app_Display_Task(void)
 	{
 		/* Display Actual Temperature */
 		LCD.setCursor(0,0);
-		LCD.print("Actual Temp: ");
-		LCD.print(ruw_AverageTemp);
-		LCD.print('.');
-		LCD.print(rub_DecAverageTemp);
+		LCD.print("                ");
+		LCD.print("Temp: ");
+		LCD.println(ruw_AverageTemp,1);
 
 		if(LIMITSTATE_INRANGE == re_LimitState)
 		{
 			/* Display Fixed Temperature */
 			LCD.setCursor(0,1);
+			LCD.noBlink();
 			LCD.print("Fixed Temp: ");
 			LCD.print(rul_DesiredTemperature);
 			LCD.print('.');
@@ -66,6 +66,10 @@ void app_Display_Task(void)
 				(BUTTON_SELECT == re_ButtonPressed))
 		{
 			re_DisplayMode = DISPLAY_CONFIG;
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
 		}
 		else
 		{
@@ -75,7 +79,11 @@ void app_Display_Task(void)
 	}
 	else
 	{
-		app_Menu_Task();
+		do
+		{
+			app_Menu_Task();
+
+		}while(DISPLAY_CONFIG == re_DisplayMode);
 	}
 }
 
