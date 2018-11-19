@@ -11,8 +11,8 @@
 /* Public Type definitions */
 
 /* Public Macros */
-#define APP_STEPPERMOTOR_CLK_DIR		false
-#define APP_STEPPERMOTOR_CNTCLK_DIR		true
+#define APP_STEPPERMOTOR_CLK_DIR		true
+#define APP_STEPPERMOTOR_CNTCLK_DIR		false
 
 /* Public Variables */
 

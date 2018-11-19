@@ -10,6 +10,7 @@
 
 /* Variables */
 T_DISPLAY re_DisplayMode;
+static T_BUTTONS re_ButtonPressed,re_LastButtonPressed;
 
 
 /* Functions */
@@ -24,6 +25,9 @@ void app_Display_Init(void)
 {
 	/* Init in Normal Mode */
 	re_DisplayMode = DISPLAY_NORMAL;
+
+	re_ButtonPressed = BUTTON_NONE;
+	re_LastButtonPressed = BUTTON_NONE;
 }
 
 /*************************************
@@ -57,6 +61,17 @@ void app_Display_Task(void)
 		{
 			/* Keep the text left by LimitSwitch */
 		}
+		re_ButtonPressed = app_Buttons_GetButtonPressed();
+		if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_SELECT == re_ButtonPressed))
+		{
+			re_DisplayMode = DISPLAY_CONFIG;
+		}
+		else
+		{
+			/* Do nothing */
+		}
+		re_LastButtonPressed = re_ButtonPressed;
 	}
 	else
 	{

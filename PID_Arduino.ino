@@ -36,19 +36,16 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
-	while(true)
+	if(LIMITSTATE_LIMITS == re_LimitState)
 	{
-		if(IS_VALVE_FULLY_CLOSED)
-		{
-			/* Do Nothing */
-		}
-		else
-		{
-			app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
-		}
-		app_LimitSwitch_Task();
-		delay(500u);
+		/* Do Nothing */
 	}
+	else
+	{
+		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
+	}
+	app_LimitSwitch_Task();
+
 	app_Temperature_Task();
 	app_Display_Task();
 #ifdef TEST
