@@ -55,7 +55,7 @@ void app_Display_Task(void)
 		}
 		else
 		{
-			/* Keep the text left by LimitSwithc */
+			/* Keep the text left by LimitSwitch */
 		}
 	}
 	else

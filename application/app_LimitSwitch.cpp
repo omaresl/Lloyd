@@ -11,13 +11,6 @@
 /* Private Type definitions */
 
 /* Private Macros */
-#ifdef OmarBoard
-#define APP_LIMITSWITCH_START_PIN	(3u)
-#define APP_LIMITSWITCH_END_PIN		(4u)
-#else
-#define APP_LIMITSWITCH_START_PIN	(39u)
-#define APP_LIMITSWITCH_END_PIN		(40u)
-#endif
 
 /* Public Variables */
 T_LIMITSTATE re_LimitState;

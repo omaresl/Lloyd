@@ -20,6 +20,14 @@ typedef enum
 }T_LIMITSTATE;
 
 /* Public Macros */
+#ifdef OmarBoard
+#define APP_LIMITSWITCH_START_PIN	(3u)
+#define APP_LIMITSWITCH_END_PIN		(4u)
+#else
+#define APP_LIMITSWITCH_START_PIN	(40u)
+#define APP_LIMITSWITCH_END_PIN		(41u)
+#endif
+
 #define IS_VALVE_FULLY_CLOSED	(true != digitalRead(APP_LIMITSWITCH_START_PIN))
 #define IS_VALVE_FULLY_OPEN		(true != digitalRead(APP_LIMITSWITCH_END_PIN))
 
