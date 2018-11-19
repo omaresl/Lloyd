@@ -30,51 +30,14 @@ void setup()
 	app_Menu_init();
 	/* Stepper Init */
 	app_StepperMotor_Init();
-
-	pinMode(13u,OUTPUT);
-
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
-	if(LIMITSTATE_LIMITS == re_LimitState)
-	{
-		/* Do Nothing */
-	}
-	else
-	{
-		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
-	}
-
-
-
 	app_LimitSwitch_Task();
-//	if(LIMITSTATE_LIMITS == re_LimitState)
-//	{
-//		/* Do Nothing */
-//	}
-//	else
-//	{
-//		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
-//	}
-
-
-
 	app_Temperature_Task();
-//	if(LIMITSTATE_LIMITS == re_LimitState)
-//	{
-//		/* Do Nothing */
-//	}
-//	else
-//	{
-//		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
-//	}
-
-
-	digitalWrite(13,1);
 	app_Display_Task();
-	digitalWrite(13,0);
 #ifdef TEST
 	//	Test_Case_LCD();
 	//	Test_Case_Buttons();

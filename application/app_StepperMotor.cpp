@@ -42,6 +42,8 @@ void app_StepperMotor_Init(void)
 	pinMode(APP_STEPPERMOTOR_EN_PIN,OUTPUT);
 	pinMode(APP_STEPPERMOTOR_DIR_PIN,OUTPUT);
 	pinMode(APP_STEPPERMOTOR_PUL_PIN,OUTPUT);
+
+	app_StepperMotor_GoHome();
 }
 
 /*************************************
@@ -65,3 +67,22 @@ void app_StepperMotor_OneStep(unsigned char lub_dir)
 	}
 }
 
+/*************************************
+ * Name: app_StepperMotor_GoHome
+ * Description: Stepper Motor Module Go Home Function
+ * Parameters: N/A
+ * Return: N/A
+ *************************************/
+void app_StepperMotor_GoHome(void)
+{
+	/* Print Message */
+	LCD.setCursor(0,1);
+	LCD.print("Going Home");
+
+	/* Close valve until Home swithc is activated */
+	while(!IS_VALVE_FULLY_CLOSED)
+	{
+		/* Close valve one step */
+		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
+	}
+}

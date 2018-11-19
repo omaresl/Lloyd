@@ -7,6 +7,8 @@
 
 /* Interfaces */
 #include <Arduino.h>
+#include "app_LimitSwitch.h"
+#include "app_LCD.h"
 
 /* Public Type definitions */
 
@@ -19,6 +21,7 @@
 /* Public Prototypes */
 extern void app_StepperMotor_Init(void);
 extern void app_StepperMotor_OneStep(unsigned char lub_dir);
+extern void app_StepperMotor_GoHome(void);
 
 
 
