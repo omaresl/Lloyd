@@ -28,17 +28,28 @@ void setup()
 	app_Buttons_init();
 	/* Menu Init */
 	app_Menu_init();
+	/* Stepper Init */
+	app_StepperMotor_Init();
 
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
+	if(LIMITSTATE_LIMITS == re_LimitState)
+	{
+		/* Do Nothing */
+	}
+	else
+	{
+		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
+	}
 	app_LimitSwitch_Task();
+
 	app_Temperature_Task();
 	app_Display_Task();
 #ifdef TEST
-//	Test_Case_LCD();
-//	Test_Case_Buttons();
+	//	Test_Case_LCD();
+	//	Test_Case_Buttons();
 #endif
 }
