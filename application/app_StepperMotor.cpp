@@ -43,7 +43,11 @@ void app_StepperMotor_Init(void)
 	pinMode(APP_STEPPERMOTOR_DIR_PIN,OUTPUT);
 	pinMode(APP_STEPPERMOTOR_PUL_PIN,OUTPUT);
 
-	app_StepperMotor_GoHome();
+	while(true)
+	{
+		app_StepperMotor_GoHome();
+		app_StepperMotor_GoLimit();
+	}
 }
 
 /*************************************
@@ -85,4 +89,32 @@ void app_StepperMotor_GoHome(void)
 		/* Close valve one step */
 		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
 	}
+}
+
+/*************************************
+ * Name: app_StepperMotor_GoLimit
+ * Description: Stepper Motor Module Go Limit Function
+ * Parameters: N/A
+ * Return: N/A
+ *************************************/
+void app_StepperMotor_GoLimit(void)
+{
+	unsigned int luw_StepCounter;
+	/* Print Message */
+	LCD.setCursor(0,1);
+	LCD.print("Open Valve      ");
+
+	luw_StepCounter = 0u;
+	/* Close valve until Home swithc is activated */
+	while(!IS_VALVE_FULLY_OPEN)
+	{
+		luw_StepCounter++;
+		/* Close valve one step */
+		app_StepperMotor_OneStep(APP_STEPPERMOTOR_CNTCLK_DIR);
+	}
+
+	LCD.setCursor(0,0);
+	LCD.print("Steps:          ");
+	LCD.setCursor(7,0);
+	LCD.print(luw_StepCounter);
 }
