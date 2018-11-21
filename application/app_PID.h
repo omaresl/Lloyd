@@ -10,9 +10,9 @@
 
 
 /* External Variables */
-extern unsigned long rub_ConstP;
-extern unsigned long rub_ConstI;
-extern unsigned long rub_ConstD;
+extern float rub_ConstP;
+extern float rub_ConstI;
+extern float rub_ConstD;
 
 
 #endif /* APPLICATION_APP_PID_H_ */

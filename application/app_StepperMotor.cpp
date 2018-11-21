@@ -42,12 +42,15 @@ void app_StepperMotor_Init(void)
 	pinMode(APP_STEPPERMOTOR_EN_PIN,OUTPUT);
 	pinMode(APP_STEPPERMOTOR_DIR_PIN,OUTPUT);
 	pinMode(APP_STEPPERMOTOR_PUL_PIN,OUTPUT);
-
+#ifdef CALIBRATION
 	while(true)
 	{
 		app_StepperMotor_GoHome();
 		app_StepperMotor_GoLimit();
 	}
+#else
+	app_StepperMotor_GoHome();
+#endif
 }
 
 /*************************************

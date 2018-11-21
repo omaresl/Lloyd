@@ -53,9 +53,7 @@ void app_Display_Task(void)
 			/* Display Fixed Temperature */
 			LCD.setCursor(0,1);
 			LCD.print("Fixed Temp: ");
-			LCD.print(rul_DesiredTemperature);
-			LCD.print('.');
-			LCD.print(rul_DecDesiredTemperature);
+			LCD.print(rul_DesiredTemperature,1);
 		}
 		else
 		{

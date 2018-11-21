@@ -10,7 +10,7 @@
 #include "app_Menu.h"
 
 /* Variables */
-unsigned long *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
+float *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
 const char raub_ItemText[APP_MENU_N_ITEMS][17u] = APP_MENU_ITEMSTEXT;
 const unsigned long raul_MaxLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MAXLIMITS;
 const unsigned long raul_MinLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MINLIMITS;
