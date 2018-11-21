@@ -38,8 +38,4 @@ void loop()
 	app_LimitSwitch_Task();
 	app_Temperature_Task();
 	app_Display_Task();
-#ifdef TEST
-	//	Test_Case_LCD();
-	//	Test_Case_Buttons();
-#endif
 }

@@ -41,17 +41,17 @@ void app_Display_Task(void)
 	/* Show the corresponding data according the mode */
 	if(DISPLAY_NORMAL == re_DisplayMode)
 	{
+		LCD.noBlink();
 		/* Display Actual Temperature */
 		LCD.setCursor(0,0);
-		LCD.print("                ");
-		LCD.print("Temp: ");
-		LCD.println(ruw_AverageTemp,1);
+		LCD.print("Temp:          ");
+		LCD.setCursor(6,0);
+		LCD.print(ruw_AverageTemp,1);
 
 		if(LIMITSTATE_INRANGE == re_LimitState)
 		{
 			/* Display Fixed Temperature */
 			LCD.setCursor(0,1);
-			LCD.noBlink();
 			LCD.print("Fixed Temp: ");
 			LCD.print(rul_DesiredTemperature);
 			LCD.print('.');
@@ -79,6 +79,8 @@ void app_Display_Task(void)
 	}
 	else
 	{
+		LCD.setCursor(0,0);
+		LCD.print("Config Mode     ");
 		do
 		{
 			app_Menu_Task();
