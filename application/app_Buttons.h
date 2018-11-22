@@ -25,7 +25,7 @@ typedef enum
 }T_BUTTONS;
 
 /* Macros */
-#define APP_BUTTONS_DEBOUNCE	(10u)
+#define APP_BUTTONS_DEBOUNCE	(2u)
 
 /* External Functions */
 extern void app_Buttons_init(void);

@@ -15,6 +15,7 @@
 #include "app_Temperature.h"
 #include "app_PID.h"
 #include "app_Display.h"
+#include "app_Eeprom.h"
 
 /* Public Macros */
 #define APP_MENU_N_ITEMS	(6u)
@@ -56,6 +57,16 @@
 	0u,\
 	0u,\
 	0u,\
+		}
+
+#define APP_MENU_EEP_ADDR\
+		{\
+	EEP_ADDR_FIXED_TEMP	,\
+	EEP_ADDR_TEMP_MODE	,\
+	EEP_ADDR_SAMPLES	,\
+	EEP_ADDR_P			,\
+	EEP_ADDR_I			,\
+	EEP_ADDR_D			,\
 		}
 
 /* Public Prototypes */
