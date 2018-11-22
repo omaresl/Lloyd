@@ -10,13 +10,11 @@
 #include <DallasTemperature.h>
 
 /* Variables */
-unsigned long rul_DesiredTemperature;
-unsigned long rul_DecDesiredTemperature;
-unsigned long re_TempAddMode;
-unsigned long rub_TempSamples;
+float rul_DesiredTemperature;
+float re_TempAddMode;
+float rub_TempSamples;
 float ruw_AverageTemp;
-unsigned char rub_DecAverageTemp;
-unsigned long raul_Samples[APP_TEMP_MAX_SAMPLES];
+float raul_Samples[APP_TEMP_MAX_SAMPLES];
 unsigned char rub_SampleIndex;
 unsigned char rub_IsBufferFull;
 
@@ -37,7 +35,6 @@ void app_Temperature_Init(void)
 	rub_TempSamples = 1u;
 	/* Init Desired Temperature */
 	rul_DesiredTemperature = 25u;
-	rul_DecDesiredTemperature = 0u;
 	/* Table index clear */
 	rub_SampleIndex = 0u;
 	/* Clear Buffer Flag */
@@ -55,7 +52,7 @@ void app_Temperature_Init(void)
 void app_Temperature_Task(void)
 {
 	DeviceAddress laub_DeviceAddress;
-	unsigned char lub_i;
+//	unsigned char lub_i;
 
 	/* Request data */
 	TempSensor.requestTemperatures();

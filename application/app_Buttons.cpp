@@ -41,7 +41,7 @@ T_BUTTONS app_Buttons_GetButtonPressed(void)
 
 	lul_AnalogData = analogRead(0u);       // read the value from the sensor
 
-	if (lul_AnalogData > 1000)
+	if (lul_AnalogData > 900)
 	{
 		le_Return = BUTTON_NONE;
 	}
@@ -54,7 +54,7 @@ T_BUTTONS app_Buttons_GetButtonPressed(void)
 	{
 		le_Return = BUTTON_UP;
 	}
-	else if (lul_AnalogData < 450)
+	else if (lul_AnalogData < 380)
 	{
 		le_Return = BUTTON_DOWN;
 	}

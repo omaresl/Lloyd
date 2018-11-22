@@ -10,10 +10,11 @@
 #include "app_Menu.h"
 
 /* Variables */
-unsigned long *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
+float *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
 const char raub_ItemText[APP_MENU_N_ITEMS][17u] = APP_MENU_ITEMSTEXT;
 const unsigned long raul_MaxLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MAXLIMITS;
 const unsigned long raul_MinLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MINLIMITS;
+const unsigned int rauw_AddressList[APP_MENU_N_ITEMS] = APP_MENU_EEP_ADDR;
 unsigned char rub_ItemSelected;
 unsigned char rub_DigitSelected;
 unsigned char rub_DigitHund,rub_DigitDec,rub_DigitUni;
@@ -25,7 +26,7 @@ static unsigned char rub_DisplayFlag;
 static unsigned long rul_MenuTaskLastSnapTime;
 
 /* Private Prototypes */
-static void app_Menu_ToDigits(unsigned long lul_Value);
+static void app_Menu_ToDigits(float lul_Value);
 static void app_Menu_ToData(void);
 static void app_Menu_CheckLimits(void);
 
@@ -85,11 +86,12 @@ void app_Menu_Task(void)
 			/* Print text for selected item */
 			LCD.print(raub_ItemText[rub_ItemSelected]);
 			/* Set Cursor */
-			LCD.setCursor(13u,1u);
+			LCD.setCursor(12u,1u);
 
 			/* Print digits */
 			LCD.print(rub_DigitHund);
 			LCD.print(rub_DigitDec);
+			LCD.print(".");
 			LCD.print(rub_DigitUni);
 
 			/* Cursor Blink in digit selected */
@@ -151,7 +153,7 @@ void app_Menu_Task(void)
 						rub_DigitUni = 0u;
 					}
 				}
-				else if(1u == rub_DigitSelected)
+				else if(2u == rub_DigitSelected)
 				{
 					if(rub_DigitDec < 9u)
 					{
@@ -162,7 +164,7 @@ void app_Menu_Task(void)
 						rub_DigitDec = 0u;
 					}
 				}
-				else if(2u == rub_DigitSelected)
+				else if(3u == rub_DigitSelected)
 				{
 					if(rub_DigitHund < 9u)
 					{
@@ -200,7 +202,7 @@ void app_Menu_Task(void)
 						rub_DigitUni = 9u;
 					}
 				}
-				else if(1u == rub_DigitSelected)
+				else if(2u == rub_DigitSelected)
 				{
 					if(rub_DigitDec > 0u)
 					{
@@ -211,7 +213,7 @@ void app_Menu_Task(void)
 						rub_DigitDec = 9u;
 					}
 				}
-				else if(2u == rub_DigitSelected)
+				else if(3u == rub_DigitSelected)
 				{
 					if(rub_DigitHund > 0u)
 					{
@@ -241,11 +243,18 @@ void app_Menu_Task(void)
 			{
 				if(rub_DigitSelected > 0u)
 				{
-					rub_DigitSelected--;
+					if(rub_DigitSelected == 2u)
+					{
+						rub_DigitSelected -= 2u;
+					}
+					else
+					{
+						rub_DigitSelected--;
+					}
 				}
 				else
 				{
-					rub_DigitSelected = 2u;
+					rub_DigitSelected = 3u;
 				}
 			}
 		}break;
@@ -257,9 +266,16 @@ void app_Menu_Task(void)
 			}
 			else
 			{
-				if(rub_DigitSelected < 2u)
+				if(rub_DigitSelected < 3u)
 				{
-					rub_DigitSelected++;
+					if(rub_DigitSelected == 0u)
+					{
+						rub_DigitSelected += 2u;
+					}
+					else
+					{
+						rub_DigitSelected++;
+					}
 				}
 				else
 				{
@@ -271,6 +287,8 @@ void app_Menu_Task(void)
 		{
 			/* Save New Data Config */
 			app_Menu_ToData();
+
+			EEPROM.put(rauw_AddressList[rub_ItemSelected], (float)(*raul_Items[rub_ItemSelected]));
 
 			if(rub_ItemSelected < (APP_MENU_N_ITEMS - 1u))
 			{
@@ -314,8 +332,9 @@ void app_Menu_Task(void)
  * Parameters: N/A
  * Return: N/A
  *************************************/
-static void app_Menu_ToDigits(unsigned long lul_Value)
+static void app_Menu_ToDigits(float lul_Value)
 {
+	lul_Value *= 10.0;
 	rub_DigitHund = lul_Value / 100u;
 	lul_Value -= (rub_DigitHund*100u);
 	rub_DigitDec = lul_Value / 10u;
@@ -337,7 +356,7 @@ static void app_Menu_ToData(void)
 	}
 	else
 	{
-		*raul_Items[rub_ItemSelected] = 	(rub_DigitHund*100u) + (rub_DigitDec*10u) + (rub_DigitUni);
+		*raul_Items[rub_ItemSelected] = 	(((rub_DigitHund*100u) + (rub_DigitDec*10u) + (rub_DigitUni))/10.0);
 	}
 	app_Menu_CheckLimits();
 }

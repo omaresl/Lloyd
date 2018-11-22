@@ -9,7 +9,7 @@
 #include "app_PID.h"
 
 /* Variables */
-unsigned long rub_ConstP;
-unsigned long rub_ConstI;
-unsigned long rub_ConstD;
+float rub_ConstP;
+float rub_ConstI;
+float rub_ConstD;
 

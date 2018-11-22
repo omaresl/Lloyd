@@ -7,6 +7,7 @@
 #include "application/app_Display.h"
 #include "application/app_LimitSwitch.h"
 #include "application/app_StepperMotor.h"
+#include "application/app_Eeprom.h"
 
 //#define TEST
 #ifdef TEST
@@ -30,6 +31,8 @@ void setup()
 	app_Menu_init();
 	/* Stepper Init */
 	app_StepperMotor_Init();
+	/* Eeprom Init */
+	app_Eeprom_Init();
 }
 
 // The loop function is called in an endless loop
@@ -38,8 +41,4 @@ void loop()
 	app_LimitSwitch_Task();
 	app_Temperature_Task();
 	app_Display_Task();
-#ifdef TEST
-	//	Test_Case_LCD();
-	//	Test_Case_Buttons();
-#endif
 }

@@ -43,5 +43,5 @@ void app_LCD_Init(void)
 	/* Set cursor to home */
 	LCD.setCursor(0u,0u);
 	/* Print first message */
-	LCD.print("PID Controller");
+	LCD.print("Steps Counter   ");
 }

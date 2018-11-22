@@ -92,6 +92,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LiquidCrystal_I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/DallasTemperature}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/OneWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/EEPROM/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1717948739" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -105,6 +106,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LiquidCrystal_I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/DallasTemperature}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/OneWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/EEPROM/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.778968661" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -118,6 +120,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/LiquidCrystal_I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/DallasTemperature}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/OneWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PID_Arduino/libraries/EEPROM/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.657727205" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
