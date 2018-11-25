@@ -52,51 +52,52 @@ void app_Temperature_Init(void)
 void app_Temperature_Task(void)
 {
 	DeviceAddress laub_DeviceAddress;
-//	unsigned char lub_i;
+	unsigned char lub_i;
 
 	/* Request data */
 	TempSensor.requestTemperatures();
 	/* Store Temperatures */
 	TempSensor.getAddress(laub_DeviceAddress,0);
-	ruw_AverageTemp = TempSensor.getTempC(laub_DeviceAddress);
-//	raul_Samples[rub_SampleIndex] = TempSensor.getTemp(laub_DeviceAddress);
+//	ruw_AverageTemp = TempSensor.getTempC(laub_DeviceAddress);
+	raul_Samples[rub_SampleIndex] = TempSensor.getTempC(laub_DeviceAddress);
 
-//	/* Validity of max num samples */
-//	if(0u == rub_TempSamples)
-//	{
-//		rub_TempSamples = 1u;
-//	}
-//	else
-//	{
-//		/* Num Samples Valid */
-//	}
-//
-//	/* Increase Sample counter */
-//	if(rub_SampleIndex < (rub_TempSamples - 1u))
-//	{
-//		rub_SampleIndex++;
-//	}
-//	else
-//	{
-//		/* Buffer Filled */
-//		rub_IsBufferFull = true;
-//		rub_SampleIndex = 0u;
-//	}
-//
-//	/* Averaging */
-//	if(true == rub_IsBufferFull)
-//	{
-//		ruw_AverageTemp = (unsigned int)raul_Samples[0u];
-//		for(lub_i = 1u; lub_i < rub_TempSamples; lub_i++)
-//		{
-//			ruw_AverageTemp += raul_Samples[lub_i];
-//			ruw_AverageTemp /= 2u;
-//		}
-//	}
-//	else
-//	{
-//		/* Wait for first run */
-//	}
+	/* Validity of max num samples */
+	if(0u == rub_TempSamples)
+	{
+		rub_TempSamples = 1u;
+	}
+	else
+	{
+		/* Num Samples Valid */
+	}
+
+	/* Increase Sample counter */
+	if(rub_SampleIndex < (rub_TempSamples - 1u))
+	{
+		rub_SampleIndex++;
+	}
+	else
+	{
+		/* Buffer Filled */
+		rub_IsBufferFull = true;
+		rub_SampleIndex = 0u;
+	}
+
+	/* Averaging */
+	if(true == rub_IsBufferFull)
+	{
+		ruw_AverageTemp = (unsigned int)raul_Samples[0u];
+		for(lub_i = 1u; lub_i < rub_TempSamples; lub_i++)
+		{
+			ruw_AverageTemp += raul_Samples[lub_i];
+			ruw_AverageTemp /= 2.0;
+		}
+	}
+	else
+	{
+		/* Wait for first run */
+		ruw_AverageTemp = TempSensor.getTempC(laub_DeviceAddress);
+	}
 }
 
 /*************************************

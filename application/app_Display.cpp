@@ -47,23 +47,52 @@ void app_Display_Task(void)
 		LCD.print("Temp:          ");
 		LCD.setCursor(6,0);
 		LCD.print(ruw_AverageTemp,1);
-
-		if(LIMITSTATE_INRANGE == re_LimitState)
+		if(ADD_COLD == re_TempAddMode)
 		{
-			/* Display Fixed Temperature */
-			LCD.setCursor(0,1);
-			LCD.print("Fixed Temp: ");
-			LCD.print(rul_DesiredTemperature,1);
+			LCD.print(" Mc");
 		}
 		else
 		{
-			/* Keep the text left by LimitSwitch */
+			LCD.print(" Mh");
 		}
+
+		//		if(LIMITSTATE_INRANGE == re_LimitState)
+		//		{
+		/* Display Fixed Temperature */
+		LCD.setCursor(0,1);
+		LCD.print("Fixed Temp: ");
+		LCD.print(rul_DesiredTemperature,1);
+		//		}
+		//		else
+		//		{
+		//			/* Keep the text left by LimitSwitch */
+		//		}
 		re_ButtonPressed = app_Buttons_GetButtonPressed();
 		if((BUTTON_NONE == re_LastButtonPressed) &&
 				(BUTTON_SELECT == re_ButtonPressed))
 		{
 			re_DisplayMode = DISPLAY_CONFIG;
+			LCD.setCursor(0,0);
+			LCD.print("Release Button  ");
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
+		}
+		else if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_RIGHT == re_ButtonPressed))
+		{
+			re_DisplayMode = DISPLAY_MANUAL;
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
+
+		}
+		else if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_LEFT == re_ButtonPressed))
+		{
+			re_DisplayMode = DISPLAY_MANUAL;
 			while(BUTTON_NONE != re_ButtonPressed)
 			{
 				re_ButtonPressed = app_Buttons_GetButtonPressed();
@@ -75,6 +104,47 @@ void app_Display_Task(void)
 		}
 		re_LastButtonPressed = re_ButtonPressed;
 	}
+	else if(DISPLAY_MANUAL == re_DisplayMode)
+	{
+		LCD.noBlink();
+		/* Display Actual Temperature */
+		LCD.setCursor(0,0);
+		LCD.print("Manual Mode    ");
+		LCD.setCursor(0,1);
+		LCD.print("Temp:          ");
+		LCD.setCursor(6,1);
+		LCD.print(ruw_AverageTemp,1);
+
+		re_ButtonPressed = app_Buttons_GetButtonPressed();
+		if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_SELECT == re_ButtonPressed))
+		{
+			re_DisplayMode = DISPLAY_NORMAL;
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
+		}
+		else if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_RIGHT == re_ButtonPressed))
+		{
+			app_StepperMotor_GoLimit();
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
+
+		}
+		else if((BUTTON_NONE == re_LastButtonPressed) &&
+				(BUTTON_LEFT == re_ButtonPressed))
+		{
+			app_StepperMotor_GoHome();
+			while(BUTTON_NONE != re_ButtonPressed)
+			{
+				re_ButtonPressed = app_Buttons_GetButtonPressed();
+			}
+		}
+	}
 	else
 	{
 		LCD.setCursor(0,0);
@@ -84,6 +154,8 @@ void app_Display_Task(void)
 			app_Menu_Task();
 
 		}while(DISPLAY_CONFIG == re_DisplayMode);
+		LCD.setCursor(0,0);
+		LCD.print("Changing Mode   ");
 	}
 }
 

@@ -47,4 +47,29 @@ void app_Eeprom_Init(void)
 	EEPROM.get(EEP_ADDR_P,rub_ConstP);
 	EEPROM.get(EEP_ADDR_I,rub_ConstI);
 	EEPROM.get(EEP_ADDR_D,rub_ConstD);
+	EEPROM.get(EEP_ADDR_LIMIT_POS,rul_LimitPosition);
+}
+
+/*************************************
+ * Name: app_Eeprom_IsCalibrated
+ * Description: Eeprom Module Task
+ * Parameters: N/A
+ * Return: N/A
+ *************************************/
+unsigned char app_Eeprom_IsCalibrated(void)
+{
+	unsigned char lub_Return;
+
+	lub_Return = false;
+
+	if(EEPROM.read(EEP_ADDR_CAL) != 0x55u)
+	{
+
+	}
+	else
+	{
+		lub_Return = true;
+	}
+
+	return lub_Return;
 }
