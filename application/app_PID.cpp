@@ -11,6 +11,8 @@
 /* Variables */
 unsigned char rub_PastErrorsIndex;
 float rf_PastErrors[APP_PID_N_PAST_ERRORS];
+static float rf_LastColdPIDOut;
+static float rf_LastHeatPIDOut;
 
 float rub_ConstP;
 float rub_ConstI;
@@ -24,6 +26,10 @@ float rub_ConstD;
  *************************************/
 void app_PID_Init(void)
 {
+	/* Clean Last PID Out Value */
+	rf_LastColdPIDOut = 0;
+	rf_LastHeatPIDOut = 0;
+
 	/* Clean Past Error Index */
 	rub_PastErrorsIndex = 0;
 
@@ -45,6 +51,7 @@ void app_PID_Task(void)
 	float	lf_error;
 	float	lf_POut,lf_IOut, lf_DOut;
 	float	lf_PIDOut;
+	signed int	lul_steps;
 
 	/* Calculate Error */
 	lf_error = ruw_AverageTemp - rul_DesiredTemperature;
@@ -76,50 +83,113 @@ void app_PID_Task(void)
 	}
 	lf_IOut /= (float)APP_PID_N_PAST_ERRORS;
 
-	lf_IOut *= (rub_ConstI*5.00);
+	lf_IOut *= (rub_ConstI*10.00);
 
 	/*******************************************************************************/
 	/* Calculate Derivative Output */
+	//Calculate pendant
+	lf_DOut = (rf_PastErrors[APP_PID_N_PAST_ERRORS - 1] - rf_PastErrors[0]);
+	lf_DOut *= (rub_ConstD*5.00);
 
 	/*******************************************************************************/
 
 	/* Add all PID outputs*/
-	lf_PIDOut = (lf_POut + lf_IOut);
+	lf_PIDOut = (lf_POut + lf_IOut + lf_DOut);
 
-	/* Is a significative action? */
-	if(abs((int)lf_PIDOut) >= APP_PID_MIN_OUT_VALID)
+	/* Execute Control */
+	if(ADD_COLD == re_TempAddMode)
 	{
-		/* Execute Control */
-		if(ADD_COLD == re_TempAddMode)
+		lul_steps = (signed int)(lf_PIDOut - rf_LastColdPIDOut);
+
+		if(lf_PIDOut < 0)
 		{
-			if(lf_PIDOut > 0u)//Positive error
+			rf_LastColdPIDOut = lf_PIDOut;
+
+			app_StepperMotor_GoHome();
+		}
+		else if(lul_steps > APP_PID_MIN_COLD_VALID)
+		{
+			rf_LastColdPIDOut = lf_PIDOut;
+
+			for(signed int lub_i = 0; (lub_i < lul_steps) && (!IS_VALVE_FULLY_OPEN); lub_i++)
 			{
-				/* Open the valve depending on the calculated output */
-				app_StepperMotor_GoToPosition(lf_PIDOut);
-			}
-			else
-			{//Negative error - low temperature - stop adding cold
-				/* Close the valve */
-				app_StepperMotor_GoHome();
+				app_StepperMotor_OneStep(APP_STEPPERMOTOR_CNTCLK_DIR);
 			}
 		}
-		else //ADD_HEAT
+		else if(lul_steps < APP_PID_MIN_HEAT_VALID)
 		{
-			if(lf_PIDOut < 0u)//Negative error
+			rf_LastColdPIDOut = lf_PIDOut;
+
+			for(signed int lub_i = lul_steps; (lub_i < 0) && (!IS_VALVE_FULLY_CLOSED); lub_i++)
 			{
-				lf_PIDOut *= -1.0;
-				/* Open the valve depending on the calculated output */
-				app_StepperMotor_GoToPosition(lf_PIDOut);
-			}
-			else
-			{//Positive error - high temperature - stop adding heat
-				/* Close the valve */
-				app_StepperMotor_GoHome();
+				app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
 			}
 		}
+		else
+		{
+			//Do Nothing
+		}
+		//		if(lf_PIDOut > APP_PID_MIN_COLD_VALID)//Positive error
+		//		{
+		//			/* Open the valve depending on the calculated output */
+		//			app_StepperMotor_GoToPosition(lf_PIDOut);
+		//		}
+		//		else if(lf_PIDOut < 0u)
+		//		{//Negative error - low temperature - stop adding cold
+		//			/* Close the valve */
+		//			app_StepperMotor_GoHome();
+		//		}
+		//		else
+		//		{
+		//			/* Do nothing */
+		//		}
 	}
-	else
+	else //ADD_HEAT
 	{
-		//Do nothing
+		lul_steps = (signed int)(lf_PIDOut - rf_LastHeatPIDOut);
+
+		if(lf_PIDOut > 0)
+		{
+			rf_LastHeatPIDOut = lf_PIDOut;
+
+			app_StepperMotor_GoHome();
+		}
+		else if(lul_steps > APP_PID_MIN_COLD_VALID)
+		{
+			rf_LastHeatPIDOut = lf_PIDOut;
+
+			for(signed int lub_i = 0; (lub_i < lul_steps) && (!IS_VALVE_FULLY_CLOSED); lub_i++)
+			{
+				app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
+			}
+		}
+		else if(lul_steps < APP_PID_MIN_HEAT_VALID)
+		{
+			rf_LastHeatPIDOut = lf_PIDOut;
+
+			for(signed int lub_i = lul_steps; (lub_i < 0) && (!IS_VALVE_FULLY_OPEN); lub_i++)
+			{
+				app_StepperMotor_OneStep(APP_STEPPERMOTOR_CNTCLK_DIR);
+			}
+		}
+		else
+		{
+			//Do Nothing
+		}
+		//		if(lf_PIDOut < APP_PID_MIN_HEAT_VALID)//Negative error
+		//		{
+		//			lf_PIDOut *= -1.0;
+		//			/* Open the valve depending on the calculated output */
+		//			app_StepperMotor_GoToPosition(lf_PIDOut);
+		//		}
+		//		else if( lf_PIDOut > 0)
+		//		{//Positive error - high temperature - stop adding heat
+		//			/* Close the valve */
+		//			app_StepperMotor_GoHome();
+		//		}
+		//		else
+		//		{
+		//			/* Do nothing */
+		//		}
 	}
 }

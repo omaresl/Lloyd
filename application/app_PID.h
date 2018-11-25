@@ -11,10 +11,12 @@
 /* Interfaces */
 #include "app_Temperature.h"
 #include "app_StepperMotor.h"
+#include "app_Misc.h"
 
 /* Public Macros */
 #define APP_PID_N_PAST_ERRORS	10
-#define APP_PID_MIN_OUT_VALID	50
+#define APP_PID_MIN_COLD_VALID	10
+#define APP_PID_MIN_HEAT_VALID	-10
 
 /* External Variables */
 extern float rub_ConstP;

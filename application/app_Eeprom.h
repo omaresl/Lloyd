@@ -19,12 +19,12 @@
 
 /* Public Macros */
 /* Default Values */
-#define EEP_DEF_FIXED_TEMP		(25.0f)
+#define EEP_DEF_FIXED_TEMP		(15.0f)
 #define EEP_DEF_TEMP_MODE		(ADD_COLD)
-#define EEP_DEF_SAMPLES			(01.0f)
+#define EEP_DEF_SAMPLES			(10.0f)
 #define EEP_DEF_P				(01.0f)
-#define EEP_DEF_I				(01.0f)
-#define EEP_DEF_D				(01.0f)
+#define EEP_DEF_I				(00.0f)
+#define EEP_DEF_D				(00.0f)
 
 /* Parameter Address */
 #define EEP_ADDR_CAL 			(0u)

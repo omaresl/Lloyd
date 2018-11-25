@@ -30,6 +30,8 @@ void setup()
 	app_StepperMotor_Init();
 	/* Eeprom Init */
 	app_Eeprom_Init();
+	/* PID Init */
+	app_PID_Init();
 }
 
 // The loop function is called in an endless loop
@@ -46,6 +48,13 @@ void loop()
 	app_LimitSwitch_Task();
 	app_Temperature_Task();
 	app_Display_Task();
-	app_PID_Task();
+	if(DISPLAY_NORMAL == re_DisplayMode)
+	{
+		app_PID_Task();
+	}
+	else
+	{
+		/* PID Disabled */
+	}
 #endif
 }
