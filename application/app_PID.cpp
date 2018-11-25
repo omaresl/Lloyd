@@ -43,7 +43,7 @@ void app_PID_Init(void)
 void app_PID_Task(void)
 {
 	float	lf_error;
-	float	lf_POut,lf_IOutm, lf_DOut;
+	float	lf_POut,lf_IOut, lf_DOut;
 	float	lf_PIDOut;
 
 	/* Calculate Error */
