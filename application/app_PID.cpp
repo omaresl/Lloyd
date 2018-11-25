@@ -39,8 +39,17 @@ void app_PID_Task(void)
 	/* Calculate Error */
 	lf_error = ruw_AverageTemp - rul_DesiredTemperature;
 
+	/*******************************************************************************/
 	/* Calculate Proportional Output */
 	lf_POut = lf_error*rub_ConstP*10.00;//*((float)(rul_LimitPosition/100.0));
+
+	/*******************************************************************************/
+	/* Calculate Integral Output */
+
+	/*******************************************************************************/
+	/* Calculate Derivative Output */
+
+	/*******************************************************************************/
 
 	/* Add all PID outputs*/
 	lf_PIDOut = lf_POut;
