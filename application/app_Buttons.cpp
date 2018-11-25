@@ -54,7 +54,7 @@ T_BUTTONS app_Buttons_GetButtonPressed(void)
 	{
 		le_Return = BUTTON_UP;
 	}
-	else if (lul_AnalogData < 380)
+	else if (lul_AnalogData < 450)
 	{
 		le_Return = BUTTON_DOWN;
 	}

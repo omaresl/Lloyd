@@ -3,16 +3,13 @@
 #include "application/app_Buttons.h"
 #include "application/app_Menu.h"
 #include "application/app_Temperature.h"
-#include "application/app_PID.h"
 #include "application/app_Display.h"
 #include "application/app_LimitSwitch.h"
 #include "application/app_StepperMotor.h"
 #include "application/app_Eeprom.h"
+#include "application/app_PID.h"
 
 //#define TEST
-#ifdef TEST
-#include "test/Test_Cases.h"
-#endif
 
 //The setup function is called once at startup of the sketch
 void setup()
@@ -38,7 +35,17 @@ void setup()
 // The loop function is called in an endless loop
 void loop()
 {
+#ifdef TEST
+	LCD.setCursor(0,0);
+	LCD.print("ADC Value of button pressed");
+	LCD.setCursor(0,1);
+	LCD.print(analogRead(A0));
+	LCD.print("            ");
+
+#else
 	app_LimitSwitch_Task();
 	app_Temperature_Task();
 	app_Display_Task();
+	app_PID_Task();
+#endif
 }

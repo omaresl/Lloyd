@@ -54,8 +54,8 @@ void app_LimitSwitch_Task(void)
 		if(DISPLAY_NORMAL == re_DisplayMode)
 		{
 			/* Print Limit State in LCD */
-			LCD.setCursor(0u,1u);
-			LCD.print("Full Closed     ");
+//			LCD.setCursor(0u,1u);
+//			LCD.print("Full Closed     ");
 		}
 	}
 	else if(IS_VALVE_FULLY_OPEN)
@@ -66,8 +66,8 @@ void app_LimitSwitch_Task(void)
 		if(DISPLAY_NORMAL == re_DisplayMode)
 		{
 			/* Print Limit State in LCD */
-			LCD.setCursor(0u,1u);
-			LCD.print("Full Open       ");
+//			LCD.setCursor(0u,1u);
+//			LCD.print("Full Open       ");
 		}
 	}
 	else
