@@ -43,5 +43,11 @@ void app_LCD_Init(void)
 	/* Set cursor to home */
 	LCD.setCursor(0u,0u);
 	/* Print first message */
-	LCD.print("Steps Counter   ");
+	LCD.print("PID Controller  ");
+	/* Set cursor */
+	LCD.setCursor(0u,1u);
+	/* Print first message */
+	LCD.print("Lloyd Edwards   ");
+
+	delay(1000u);
 }

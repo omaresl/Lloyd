@@ -56,11 +56,11 @@ void app_StepperMotor_Init(void)
 	LCD.setCursor(0,1);
 	LCD.print("Going Home");
 	app_StepperMotor_GoHome();
-	app_StepperMotor_GoLimit();
-	/* Print Message */
-	LCD.setCursor(0,1);
-	LCD.print("Going Home");
-	app_StepperMotor_GoHome();
+//	app_StepperMotor_GoLimit();
+//	/* Print Message */
+//	LCD.setCursor(0,1);
+//	LCD.print("Going Home");
+//	app_StepperMotor_GoHome();
 #endif
 }
 
@@ -74,52 +74,52 @@ void app_StepperMotor_OneStep(unsigned char lub_dir)
 {
 	unsigned int lub_i;
 
-	for(lub_i = 0; lub_i < 40u; lub_i++)
+	for(lub_i = 0; lub_i < 80u; lub_i++)
 	{
 		digitalWrite(APP_STEPPERMOTOR_DIR_PIN,lub_dir);
 		digitalWrite(APP_STEPPERMOTOR_EN_PIN,HIGH);
 		digitalWrite(APP_STEPPERMOTOR_PUL_PIN,HIGH);
-		delayMicroseconds(100);
+		delayMicroseconds(50);
 		digitalWrite(APP_STEPPERMOTOR_PUL_PIN,LOW);
-		delayMicroseconds(100);
+		delayMicroseconds(50);
 	}
-	/* Update Position */
-	if(APP_STEPPERMOTOR_CLK_DIR == lub_dir)
-	{
-		if(rul_MotorPosition > 0u)
-		{
-			if(IS_VALVE_FULLY_CLOSED)
-			{
-				rul_MotorPosition = 0u;
-			}
-			else
-			{
-				rul_MotorPosition--;
-			}
-		}
-		else
-		{
-			/* Do Nothing */
-		}
-	}
-	else
-	{
-		if(rul_MotorPosition < 2000u)
-		{
-			if(IS_VALVE_FULLY_OPEN)
-			{
-				/* Stop Counting */
-			}
-			else
-			{
-				rul_MotorPosition++;
-			}
-		}
-		else
-		{
-			/* Do Nothing */
-		}
-	}
+//	/* Update Position */
+//	if(APP_STEPPERMOTOR_CLK_DIR == lub_dir)
+//	{
+//		if(rul_MotorPosition > 0u)
+//		{
+//			if(IS_VALVE_FULLY_CLOSED)
+//			{
+//				rul_MotorPosition = 0u;
+//			}
+//			else
+//			{
+//				rul_MotorPosition--;
+//			}
+//		}
+//		else
+//		{
+//			/* Do Nothing */
+//		}
+//	}
+//	else
+//	{
+//		if(rul_MotorPosition < 3000u)
+//		{
+//			if(IS_VALVE_FULLY_OPEN)
+//			{
+//				/* Stop Counting */
+//			}
+//			else
+//			{
+//				rul_MotorPosition++;
+//			}
+//		}
+//		else
+//		{
+//			/* Do Nothing */
+//		}
+//	}
 }
 
 /*************************************
@@ -174,20 +174,24 @@ void app_StepperMotor_GoLimit(void)
 void app_StepperMotor_GoToPosition(float lul_Pos)
 {
 	/* Go Backward */
-	if(lul_Pos < rul_MotorPosition)
+	if((unsigned int)lul_Pos < rul_MotorPosition)
 	{
-		while(lul_Pos < rul_MotorPosition &&
+		while((unsigned int)lul_Pos < rul_MotorPosition &&
 				(!IS_VALVE_FULLY_CLOSED))
 		{
 			app_StepperMotor_OneStep(APP_STEPPERMOTOR_CLK_DIR);
 		}
 	}
-	else
-	{//Greater or equal
-		while((lul_Pos > rul_MotorPosition) &&
+	else if((unsigned int)lul_Pos > rul_MotorPosition)
+	{//Greater
+		while(((unsigned int)lul_Pos > rul_MotorPosition) &&
 				(!IS_VALVE_FULLY_OPEN))
 		{
 			app_StepperMotor_OneStep(APP_STEPPERMOTOR_CNTCLK_DIR);
 		}
+	}
+	else
+	{
+		/* Do nothing */
 	}
 }
