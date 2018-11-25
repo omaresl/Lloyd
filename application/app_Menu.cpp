@@ -12,8 +12,8 @@
 /* Variables */
 float *	raul_Items[APP_MENU_N_ITEMS] = APP_MENU_ITEMS;
 const char raub_ItemText[APP_MENU_N_ITEMS][17u] = APP_MENU_ITEMSTEXT;
-const unsigned long raul_MaxLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MAXLIMITS;
-const unsigned long raul_MinLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MINLIMITS;
+const float raul_MaxLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MAXLIMITS;
+const float raul_MinLimit[APP_MENU_N_ITEMS] = APP_MENU_APP_MINLIMITS;
 const unsigned int rauw_AddressList[APP_MENU_N_ITEMS] = APP_MENU_EEP_ADDR;
 unsigned char rub_ItemSelected;
 unsigned char rub_DigitSelected;
@@ -81,8 +81,6 @@ void app_Menu_Task(void)
 		}
 		else
 		{
-			/* Fill digits */
-			app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
 			/* Print text for selected item */
 			LCD.print(raub_ItemText[rub_ItemSelected]);
 			/* Set Cursor */
@@ -180,8 +178,6 @@ void app_Menu_Task(void)
 					/* Invalid Selection */
 					rub_DigitSelected = 0u; //Select units digit
 				}
-				/* Save New Data Config */
-				app_Menu_ToData();
 			}
 		}break;
 		case BUTTON_DOWN:
@@ -190,7 +186,8 @@ void app_Menu_Task(void)
 			{
 				*raul_Items[rub_ItemSelected] = ADD_COLD;
 			}
-			else{
+			else
+			{
 				if(0u == rub_DigitSelected)
 				{
 					if(rub_DigitUni > 0u)
@@ -229,8 +226,7 @@ void app_Menu_Task(void)
 					/* Invalid Selection */
 					rub_DigitSelected = 0u; //Select units digit
 				}
-				/* Save New Data Config */
-				app_Menu_ToData();
+
 			}
 		}break;
 		case BUTTON_RIGHT:
@@ -299,6 +295,10 @@ void app_Menu_Task(void)
 				re_DisplayMode = DISPLAY_NORMAL;
 				rub_ItemSelected = 0u;
 			}
+
+			/* Fill digits */
+			app_Menu_ToDigits(*raul_Items[rub_ItemSelected]);
+
 		}break;
 		default:
 		{
@@ -356,7 +356,7 @@ static void app_Menu_ToData(void)
 	}
 	else
 	{
-		*raul_Items[rub_ItemSelected] = 	(((rub_DigitHund*100u) + (rub_DigitDec*10u) + (rub_DigitUni))/10.0);
+		*raul_Items[rub_ItemSelected] = 	(float)((float)((rub_DigitHund*100) + (rub_DigitDec*10) + (rub_DigitUni))/10.0);
 	}
 	app_Menu_CheckLimits();
 }

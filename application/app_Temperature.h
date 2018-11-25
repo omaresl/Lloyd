@@ -14,11 +14,11 @@
 /* Typedefs */
 
 /* Macros */
-#define 	ADD_COLD	false
-#define 	ADD_HEAT	true
+#define 	ADD_COLD	00.00
+#define 	ADD_HEAT	55.00
 
-#define APP_TEMP_MAX_SAMPLES	(100u)
-#define APP_TEMP_MIN_SAMPLES	(1u)
+#define APP_TEMP_MAX_SAMPLES	(100)
+#define APP_TEMP_MIN_SAMPLES	(1)
 
 /* Extern variables */
 extern float rul_DesiredTemperature;

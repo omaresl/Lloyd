@@ -41,22 +41,22 @@
 
 #define APP_MENU_APP_MAXLIMITS\
 		{\
-	99u,\
-	ADD_HEAT,\
-	APP_TEMP_MAX_SAMPLES,\
-	10u,\
-	10u,\
-	10u,\
+	99.0,\
+	(float)ADD_HEAT,\
+	(float)APP_TEMP_MAX_SAMPLES,\
+	10.0,\
+	10.0,\
+	10.0,\
 		}
 
 #define APP_MENU_APP_MINLIMITS\
 		{\
-	0u,\
-	ADD_COLD,\
-	APP_TEMP_MIN_SAMPLES,\
-	0u,\
-	0u,\
-	0u,\
+	0.0,\
+	(float)ADD_COLD,\
+	(float)APP_TEMP_MIN_SAMPLES,\
+	0.0,\
+	0.0,\
+	0.0,\
 		}
 
 #define APP_MENU_EEP_ADDR\
